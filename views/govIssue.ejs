@@ -1,0 +1,52 @@
+<%- include("partials/header.ejs") %>
+    <div class="w-50 m-auto mt-4">
+        <form action="/showIssues" method="post">
+            <div class="row">
+                <div class="col-10">
+                    <label for="" class="form-label">Select Department</label>
+                    <select name="deptSelected" id="" class="form-select">
+                        <option value="Transport">Transport</option>
+                        <option value="Water&nbsp;Sanitation">Water Sanitation</option>
+                        <option value="Energy">Energy</option>
+                        <option value="Social&nbsp;and&nbsp;Commercial&nbsp;Infrastructure">Social and Commercial Infrastructure</option>
+                    </select>
+                </div>
+                <div class="col-2 view-issues-btn">
+                    <button type="submit" class="btn userloginbtn text-white">Show</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <% if(locals.issues) { %>
+        <div>
+            <% issues.forEach(function(issue) { %>
+                <div class="row m-0">
+                    <div class="card issue-card w-50 m-auto mt-5 col-9">
+                        <em><h4><%= issue.name %></h4></em>
+                        <h5>State: <%= issue.state %></h5>
+                        <h5>Department: <%= issue.dept %></h5>
+                        <h5>Mail ID: <%= issue.mail %></h5>
+                        <h5>Subject: <%= issue.subject %></h5>
+                        <h5>Description: <%= issue.issueDesc %></h5>
+                    </div>
+                    <div class="col-3 m-auto marked">
+                        <div class="form-check form-switch row ms-2">
+                            <input class="form-check-input checkbtn" type="checkbox" id="flexSwitchCheckDefault" onclick="handleClick('<%= issue.mail %>', '<%= issue._id %>')" style="background-color: red;">
+                        </div>
+                        <div class="row p-0">
+                            <form action="/delete-issue" method="POST">
+                                <button class="btn userloginbtn text-white mt-2" type="submit" name="issueID" value="<%= issue._id %>">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                
+            <% }) %>
+        </div>
+    <% } %>
+    <script src="functions.js"></script>
+</body>
+</html>

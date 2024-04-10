@@ -1,0 +1,59 @@
+<%- include("partials/header.ejs") %>
+<div class="row m-0">
+  <div class="col-6 p-0">
+    <div class="jumbotron centered userhomepage">
+      <div class="container">
+          <div class="row citizen-portal pt-5">
+              <div class="gov-portal mb-3">
+                  <h1 class="text-white">Citizen's Portal</h1>
+              </div>
+              <div class="col-12 gov-home-proj mb-3">
+                  <a class="btn userloginbtn log1 text-white" href="/user/login/home2/infra" role="button">View Projects</a>
+              </div>
+              <div class="col-12 gov-home-issue mb-3">
+                  <a class="btn userloginbtn log1 text-white" href="/report" role="button">Report Issue</a>
+              </div>
+          </div> 
+      </div>
+    </div>
+  </div>
+  <div class="col-6 chatbot">
+    <div class="mt-5">
+      <div class="row justify-content-center">
+        <div class="col-8 border rounded chatbot-box">
+          <h3 class="mb-4 border-bottom border-dark p-2">Your PDF Assistant</h3>
+          <% if(locals.userPrompt && locals.resStr) { %>
+              <div class="border rounded mb-3 d-inline-block promptClass text-white ps-2 pe-2 pt-2">
+                  <p><%=userPrompt%></p>
+              </div>
+              <div class="border rounded promptResponse mb-3 ps-2 pe-2 pt-2">
+                  <p><%=resStr%></p>
+              </div>
+          <%} %>
+          <form method="post" action="/prompt">
+            <div class="form-group">
+              <textarea class="form-control" id="prompt" name="prompt" rows="2" placeholder="Enter prompt."></textarea>
+            </div>
+            <button type="submit" class="btn userloginbtn mt-3 text-white">Submit</button>
+          </form>
+          <form action="/chatBotPDF" method="POST" enctype="multipart/form-data">
+              <div class="mb-3">
+                <label class="form-label text-white"></label>
+                <div class="input-group">
+                  <input type="file" name="tender" class="form-control">
+                  <button class="btn userloginbtn text-white" type="submit">Upload</button>
+                </div>
+              </div>
+             </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

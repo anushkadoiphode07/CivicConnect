@@ -1,0 +1,413 @@
+<%- include("partials/header.ejs") %>
+    <% if(userLoggedIn === true && govLoggedIn === false) { %>
+        <% if(info2.length !== 0 && info4.length !== 0){ %>
+            <div id="data1" hidden>
+                <%= info2 %>
+            </div>
+            <div id="data2" hidden>
+                <%= info3 %>
+            </div>
+            <div id="data3" hidden>
+                <%= info4 %>
+            </div>
+            <div id="data4" hidden>
+                <%= info5 %>
+            </div>
+        <% } %>
+            <div class="row pt-4 ps-4 pe-4 pb-2 m-0">
+                <div class="col-6 p-4">
+                    <div class="card w-100 h-100 project-display-card text-white">
+                        <% if(locals.info) { %>
+                            <div class="card-body">
+                                <em><h4 class="card-title text-center"><%= info[0].projectName %></h4></em>
+                                <ul> 
+                                    <div class="row mt-4">
+                                        <div class="col-6">
+                                            <li class="card-text">Project Capacity:&nbsp;<%= info[0].projectCapacity %></li>
+                                        </div>
+                                        <div class="col-6">
+                                            <li class="card-text">Project Cost:&nbsp;<%= info[0].projCost %> cr</li>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-6">
+                                            <li class="card-text">Sector:&nbsp;<%= info[0].sector %></li>
+                                        </div>
+                                        <div class="col-6">
+                                            <li class="card-text">Sub-Sector:&nbsp;<%= info[0].subSector %></li>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-6">
+                                            <li class="card-text">Status:&nbsp;<%= info[0].status %></li>
+                                        </div>
+                                        <div class="col-6">
+                                            <li class="card-text">Project Authority:&nbsp;<%= info[0].projAuth %></li>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-6">
+                                            <li class="card-text">Last Updated:&nbsp;<%= info[0].updateDate %></li>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="container mt-5">
+                        <div class="row justify-content-center">
+                          <div class="col-8">
+                            <h3 class="mb-5">Your Project Assistant</h3>
+                            <% if(locals.que && locals.queryAns){%>
+                                <div class="border rounded mb-3 d-inline-block promptClass" style="width: auto;">
+                                    <p><%=que%></p>
+                                </div>
+                                <div class="border rounded mb-3">
+                                    <p><%=queryAns%></p>
+                                </div>
+                            <%} %>
+                            
+                            <form method="post" action="/projQuery">
+                              <div class="form-group">
+                                <textarea class="form-control" id="prompt" name="prompt" rows="2" placeholder="Enter prompt."></textarea>
+                              </div>
+                              <button type="submit" class="btn userloginbtn text-white mt-3">Submit</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+            <div class="row ps-4 pe-4 m-0">
+                <div class="col-6 p-4">
+                    <div class="chartdisplay border-bottom p-2">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+                <div class="col-6 p-4">
+                    <div class="chartdisplay border-bottom p-2">
+                        <canvas id="myChart1"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="border rounded p-4 mt-4 mb-4 m-auto submit-feedback-form">
+                <div class="row">
+                    <div class="border-bottom mb-3">
+                        <h5>Submit Feedback</h5>
+                      </div>
+                    <form action="/submitFeedback" enctype="multipart/form-data" method="post">
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="Name" class="form-label" ><strong>Enter name</strong></label>
+                                <input type="text" class="form-control" placeholder="Enter your name" name="userName">
+                            </div>
+                            <div class="col-4">
+                                <label for="image" class="form-label"><strong>Upload Image</strong></label>
+                                <input type="file" name="image" class="form-control"/>
+                            </div>
+                            <div class="col-4 mb-3">
+                                <div>
+                                    <label for="" class="form-label mb-0"><strong>Rating</strong></label>
+                                </div>
+                                <div class="rating">
+                                    <input type="radio" id="star5" name="rating" value="5" class="form-check-input"/>
+                                    <label class="star form-check-label" for="star5" title="Awesome" aria-hidden="true"></label>
+                                    <input type="radio" id="star4" name="rating" value="4" />
+                                    <label class="star" for="star4" title="Great" aria-hidden="true"></label>
+                                    <input type="radio" id="star3" name="rating" value="3" />
+                                    <label class="star" for="star3" title="Very good" aria-hidden="true"></label>
+                                    <input type="radio" id="star2" name="rating" value="2" />
+                                    <label class="star" for="star2" title="Good" aria-hidden="true"></label>
+                                    <input type="radio" id="star1" name="rating" value="1" />
+                                    <label class="star" for="star1" title="Bad" aria-hidden="true"></label>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="" class="form-label"><strong>Enter Feedback</strong></label>
+                                <textarea name="userDesc" id="" cols="30" rows="5" class="form-control" placeholder="Enter your Feedback"></textarea>
+                                <!-- <input type="text" class="form-control" placeholder="Enter your feedback" name="userDesc"> -->
+                            </div>
+                            <div class="col">
+                                <button type="submit" class="btn userloginbtn text-white">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <% if(locals.info1) { %>
+                <div class="row submit-feedback-card m-auto">
+                    <div class="border-bottom mb-3">
+                        <h5>Feedbacks</h5>
+                    </div>
+                    <% info1.forEach(function (listFeedback) { %>
+                        <div class="col-6">
+                            <div class="card h-100">
+                                <div class="row p-4">
+                                    <div class="col-8">
+                                        <ul>
+                                            <li>Name: &nbsp;<%= listFeedback.name %></li> 
+                                            <li>Feedback: &nbsp;<%= listFeedback.description %></li>
+                                            <li>
+                                                <% for(let i=0; i<listFeedback.noOfStars;i++) { %>
+                                                    <span class="stars">★</span>
+                                                <% } %>
+                                            </li>     
+                                        </ul>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <img src="/images/<%= listFeedback.imgname %>" alt="" class="card-img">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            <% } %>
+    <% } else {%>
+        <% if(info2.length !== 0 && info4.length !== 0){ %>
+            <div id="data1" hidden>
+                <%= info2 %>
+            </div>
+            <div id="data2" hidden>
+                <%= info3 %>
+            </div>
+            <div id="data3" hidden>
+                <%= info4 %>
+            </div>
+            <div id="data4" hidden>
+                <%= info5 %>
+            </div>
+        <% } %>
+            <div class="row pt-4 ps-4 pe-4 pb-2 justify-content-center">
+                <div class="col-10 p-4">
+                    <div class="card w-100 h-100 text-white project-display-card">
+                        <% if(locals.info) { %>
+                            <div class="card-body">
+                                <em><h4 class="card-title text-center"><%= info[0].projectName %></h4></em>
+                                <ul> 
+                                    <div class="row mt-4">
+                                        <div class="col-6">
+                                            <li class="card-text">Project Capacity:&nbsp;<%= info[0].projectCapacity %></li>
+                                        </div>
+                                        <div class="col-6">
+                                            <li class="card-text">Project Cost:&nbsp;<%= info[0].projCost %> cr</li>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-6">
+                                            <li class="card-text">Sector:&nbsp;<%= info[0].sector %></li>
+                                        </div>
+                                        <div class="col-6">
+                                            <li class="card-text">Sub-Sector:&nbsp;<%= info[0].subSector %></li>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-6">
+                                            <li class="card-text">Status:&nbsp;<%= info[0].status %></li>
+                                        </div>
+                                        <div class="col-6">
+                                            <li class="card-text">Project Authority:&nbsp;<%= info[0].projAuth %></li>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-6">
+                                            <li class="card-text">Last Updated:&nbsp;<%= info[0].updateDate %></li>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <div class="row ps-4 pe-4 m-auto">
+                <div class="col-6 p-4">
+                    <div class="chartdisplay border-bottom p-2">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    <div class="row p-2">
+                        <form action="/trackprogress" method="post">
+                            <div class="row">
+                                <div class="col-4  input-group-sm">
+                                    <label for="" class="form-label">Enter Month</label>
+                                    <input type="text" name="month" id="" placeholder="eg: Jan-22" class="form-control">
+                                </div>
+                                <div class="col-4 input-group-sm">
+                                    <label for="" class="form-label">Percent Complete</label>
+                                    <input type="number" name="percent" class="form-control">
+                                </div>
+                                <div class="col-4">
+                                    <button type="submit" class="btn userloginbtn text-white w-100 chart-submit">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-6 p-4">
+                    <div class="chartdisplay border-bottom p-2">
+                        <canvas id="myChart1"></canvas>
+                    </div>
+                    <div class="row p-2 m-0">
+                        <form action="/trackbudget" method="post">
+                            <div class="row">
+                                <div class="col-4  input-group-sm">
+                                    <label for="" class="form-label">Enter Month</label>
+                                    <input type="text" name="month" id="" placeholder="eg: Jan-22" class="form-control">
+                                </div>
+                                <div class="col-4 input-group-sm">
+                                    <label for="" class="form-label">Budget Used</label>
+                                    <input type="number" name="percent" class="form-control">
+                                </div>
+                                <div class="col-4">
+                                    <button type="submit" class="btn userloginbtn text-white w-100 chart-submit">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <% if(locals.info1) { %>
+                <div class="row submit-feedback-card m-auto">
+                    <div class="border-bottom mb-3">
+                        <h5>Feedbacks</h5>
+                    </div>
+                    <% info1.forEach(function (listFeedback) { %>
+                        <div class="col-6">
+                            <div class="card h-100">
+                                <div class="row p-4">
+                                    <div class="col-8">
+                                        <ul>
+                                            <li>Name: &nbsp;<%= listFeedback.name %></li> 
+                                            <li>Feedback: &nbsp;<%= listFeedback.description %></li>
+                                            <li>
+                                                <% for(let i=0; i<listFeedback.noOfStars;i++) { %>
+                                                    <span class="stars">★</span>
+                                                <% } %>
+                                            </li>     
+                                        </ul>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <img src="/images/<%= listFeedback.imgname %>" alt="" class="card-img">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            <% } %>
+    <% } %>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>
+
+<script>
+    const ctx = document.getElementById('myChart');
+    const ctx1 = document.getElementById('myChart1');
+    const data1 = document.getElementById('data1').innerHTML;
+    const data2 = document.getElementById('data2').innerHTML;
+    const data5 = document.getElementById('data3').innerHTML;
+    const data6 = document.getElementById('data4').innerHTML;
+    const data3 = [];
+    const data4 = [];
+    const data7 = [];
+    const data8 = [];
+    var store = "";
+    var store1 = "";
+    var store2 = "";
+    var store3 = "";
+    for(var i=0; i<data1.length; i++){
+        if(data1[i] === ' ' || data1[i] === '\n'){
+            continue;
+        }
+        else if(data1[i] !== ','){
+            store += data1[i];
+        }
+        else{
+            data3.push(store);
+            store = "";
+        }
+    }
+    data3.push(store);
+    for(var i=0; i<data2.length; i++){
+        if(data2[i] === ' ' || data2[i] === '\n'){
+            continue;
+        }
+        else if(data2[i] !== ','){
+            store1 += data2[i];
+        }
+        else{
+            data4.push(store1);
+            store1 = "";
+        }
+    }
+    data4.push(store1);
+    console.log(data3);
+    console.log(data4);
+
+    for(var i=0; i<data5.length; i++){
+        if(data5[i] === ' ' || data5[i] === '\n'){
+            continue;
+        }
+        else if(data5[i] !== ','){
+            store2 += data5[i];
+        }
+        else{
+            data7.push(store);
+            store2 = "";
+        }
+    }
+    data7.push(store2);
+    for(var i=0; i<data6.length; i++){
+        if(data6[i] === ' ' || data6[i] === '\n'){
+            continue;
+        }
+        else if(data6[i] !== ','){
+            store3 += data6[i];
+        }
+        else{
+            data8.push(store3);
+            store3 = "";
+        }
+    }
+    data8.push(store3);
+
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: data3,
+        datasets: [{
+          label: 'Percent Complete',
+          data: data4,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    new Chart(ctx1, {
+      type: 'line',
+      data: {
+        labels: data7,
+        datasets: [{
+          label: 'Budget Utilised',
+          data: data8,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+</script>

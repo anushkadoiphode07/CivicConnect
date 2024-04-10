@@ -1,0 +1,261 @@
+body {
+  background-color: #EEEEEE;
+}
+
+.rating {
+  margin-top: 10px;
+  border: none;
+  float: left;
+}
+
+.rating > label {
+color: #90A0A3;
+float: right;
+}
+
+.rating > label:before {
+margin: 5px;
+font-size: 1.5em;
+font-family: FontAwesome;
+content: "\f005";
+display: inline-block;
+}
+
+.rating > input {
+display: none;
+}
+
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+color: #F79426;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label {
+color: #FECE31;
+}
+
+/* Authentication */
+
+
+.auth-left {
+background-color: #222831;
+color: #EEEEEE;
+height: 100vh;
+text-align: left;
+}
+
+.tagline {
+margin-top: 33vh;
+margin-left: 50px;
+font-family:Arial, Helvetica, sans-serif;
+font-weight: bold;
+font-size: 3.5rem;
+}
+
+.tag {
+margin-left: 50px;
+font-family:Arial, Helvetica, sans-serif;
+font-size: 2.5rem;
+}
+
+.auth-right {
+background-color: #2D9596;
+color: #d292ff;
+height: 100vh;
+text-align: center;
+}
+
+.buttons-log {
+margin-top: 38vh;
+
+}
+
+.log {
+width: 250px;
+height: 45px;
+background-color: #222831;
+border: #222831;
+}
+
+.log-bt {
+color: white;
+}
+
+.log:hover {
+color: #31363F !important;
+text-decoration: none;
+}
+
+/* Government Login Page */
+.gov-login {
+margin: auto;
+height: 40%;
+width: 40%;
+border: solid;
+border-color: black;
+border-radius: 2%;
+padding: 20px;
+margin-top: 20vh;
+background-color: #222831;
+color: white;
+}
+
+/* User Login */
+
+.userloginbtn {
+  background-color: #2D9596;
+}
+
+/* Government Portal */
+
+.gov-home-proj {
+text-align: center;
+}
+
+.gov-home-issue {
+text-align: center;
+}
+
+.log1 {
+width: 250px;
+height: 45px;
+}
+
+.gov-portal {
+text-align: center;
+margin-top: 130px;
+}
+
+
+
+/* Citizens Portal */
+.chatbot {
+  background-color: #2D9596;
+  align-items: center;
+}
+
+.chatbot-box {
+  background-color: #EEEEEE;
+}
+
+.citizen-portal {
+  align-items: center;
+}
+
+/* User Home 2 */
+
+.userrow {
+height: 10vh;
+}
+
+
+/* Project Display */
+
+.chart-submit{
+  margin-top: 32px;
+}
+
+.projDetail {
+  background-color: #072138;
+  padding: 20px;
+  color: white;
+  margin-bottom: 40px;
+}
+
+.submit-feedback-form {
+  width: 75%;
+}
+
+.submit-feedback-card {
+  width: 75%;
+}
+
+.stars {
+  color:  #F79426;
+  font-size: 1.5em;
+}
+
+/* Chart */
+
+/* Add Project */
+.add-project {
+background-color: #1c222d;
+}
+
+/* Infra Proj */
+.filter-button{
+margin-top: 32px;
+}
+
+.filter-form {
+margin-left: 175px;
+}
+
+.projCard {
+height: 250px;
+width: 350px;
+border-radius: 5%;
+}
+
+/* Issue Display */
+.issue-card {
+background-color: #31363F;
+padding: 20px;
+color: white;
+margin-bottom: 40px;
+
+}
+
+.chat-container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+.chat-box {
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.promptClass{
+  align-content:end;
+  background-color: #31363F;
+}
+.promptResponse {
+  align-content:end;
+  background-color: #C7C8CC;
+}
+
+/* User Home Page */
+
+.userhomepage {
+  background-color: #31363F;
+  height: 100vh;
+}
+
+/* Government Home page */
+
+.gov-home-page {
+  background-color: #31363F;
+  height: 100vh;
+}
+
+/* Infra Proj */
+
+.infraproj {
+  background-color: #31363F;
+}
+
+.view-issues-btn {
+  margin-top: 32px;
+}
+
+.project-display-card {
+  background-color: #31363F;
+}
+
+
